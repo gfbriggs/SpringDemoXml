@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:sport.properties"/>
+
+    <!-- Services -->
+    <bean id="happyFortuneService" class="fielden.springdemoone.services.HappyFortuneService"/>
+
+    <bean id="sadFortuneService" class="fielden.springdemoone.services.SadFortuneService">
+        <property name="fortunes" value="${sfortune.fortunes}"/>
+    </bean>
+
+    <bean id="myCoach" class="fielden.springdemoone.models.BaseballCoach" >
+        <!-- Constructor injection -->
+        <constructor-arg ref="happyFortuneService"/>
+    </bean>
+    <bean id="myTrackCoach" class="fielden.springdemoone.models.TrackCoach" >
+        <!-- Constructor injection -->
+        <constructor-arg ref="happyFortuneService"/>
+    </bean>
+    <bean id="myCricketCoach" class="fielden.springdemoone.models.CricketCoach" >
+        <!-- Setter injection -->
+        <property name="fortuneService" ref="sadFortuneService" />
+
+        <!-- Literal values -->
+        <property name="email" value="${tcoach.email}"/>
+        <property name="team" value="${tcoach.team}"/>
+    </bean>
+</beans>
