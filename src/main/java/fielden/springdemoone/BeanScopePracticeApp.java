@@ -16,9 +16,9 @@ public class BeanScopePracticeApp {
         Coach protoCoachOne = context.getBean(BeanAliasConstants.MY_COACH, Coach.class);
         Coach protoCoachTwo = context.getBean(BeanAliasConstants.MY_COACH, Coach.class);
 
-        System.out.println("Two singleton coaches are the same object: " + String.valueOf(singleCoachOne == singleCoachTwo));
+        System.out.println("Two singleton coaches are the same object: " + (singleCoachOne == singleCoachTwo));
 
-        System.out.println("Two prototype coaches are the same object: " + String.valueOf(protoCoachTwo == protoCoachOne));
+        System.out.println("Two prototype coaches are the same object: " + (protoCoachTwo == protoCoachOne));
 
         context.close();
     }
